@@ -56,6 +56,7 @@ module charmquark1984_controller #( parameter MAX_COUNT = 1000 ) (
     end
 
     assign led_out[0:1] = x;
+    assign led_out[2:6] = 0;
     // instantiate segment display
     // seg7 seg7(.counter(digit), .segments(led_out));
 
