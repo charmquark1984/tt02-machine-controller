@@ -26,7 +26,7 @@ module tb (
     assign segments = outputs[6:0];
 
     // instantiate the DUT
-    seven_segment_seconds #(.MAX_COUNT(100)) seven_segment_seconds(
+    charmquark1984_controller #(.MAX_COUNT(100)) charmquark1984_controller(
         .io_in  (inputs),
         .io_out (outputs)
         );
