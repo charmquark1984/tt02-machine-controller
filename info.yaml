@@ -3,9 +3,10 @@
 project:
   wokwi_id:    0        # If using wokwi, set this to your project's ID
   source_files:        # If using an HDL, set wokwi_id as 0 and uncomment and list your source files here. Source files must be in ./src
-    - counter.v
+#    - counter.v
     - decoder.v
-  top_module:  "seven_segment_seconds"      # put the name of your top module here, make it unique by prepending your github username
+    - controller.v
+  top_module:  "charmquark1984_controller"      # put the name of your top module here, make it unique by prepending your github username
 
 # As everyone will have access to all designs, try to make it easy for someone new to your design to know what
 # it does and how to operate it.
@@ -14,13 +15,13 @@ project:
 #
 # This info will be automatically collected and used to make a datasheet for the chip.
 documentation: 
-  author:       "Matt Venn"      # Your name
-  discord:      "mattvenn"      # Your discord handle
-  title:        "7 segment seconds"      # Project title
-  description:  "count up to 10, one second at a time"      # Short description of what your project does
-  how_it_works: "uses a register and some combinational logic"      # Longer description of how the project works
-  how_to_test:  "after reset, the counter should increase by one every second"      # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
-  external_hw:  ""      # Describe any external hardware needed
+  author:       "Jacob Ridgway"      # Your name
+  discord:      "cq1984#8722"      # Your discord handle
+  title:        "Machine Controller"      # Project title
+  description:  "Produces stepper motor command signals given input commands"      # Short description of what your project does
+  how_it_works: "Implements a simple CPU with hardware support for Bresenham algorithm"      # Longer description of how the project works
+  how_to_test:  "supply commands, observe correct number and order of steps"      # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
+  external_hw:  "4x stepper motors and drivers (e.g. 3D printer)"      # Describe any external hardware needed
   language:     "verilog" # other examples include Verilog, Amaranth, VHDL, etc
   doc_link:     ""      # URL to longer form documentation, eg the README.md in your repository
   clock_hz:     1000       # Clock frequency in Hz (if required)
@@ -28,19 +29,19 @@ documentation:
   inputs:               # a description of what the inputs do
     - clock
     - reset
-    - none
-    - none
-    - none
-    - none
-    - none
-    - none
+    - command 
+    - command
+    - command
+    - command
+    - command
+    - command
   outputs:
-    - segment a         # a description of what the outputs do
-    - segment b
-    - segment c
-    - segment d
-    - segment e
-    - segment f
-    - segment g
-    - none
+    - Stepper X A         # a description of what the outputs do
+    - Stepper X B 
+    - Stepper Y A 
+    - Stepper Y B 
+    - Stepper Z A 
+    - Stepper Z B 
+    - Stepper E A 
+    - Stepper E B 
 
