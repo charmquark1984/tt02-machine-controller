@@ -14,11 +14,16 @@ module charmquark1984_controller #( parameter MAX_COUNT = 1000 ) (
     reg [9:0] second_counter;
     reg [3:0] digit;
 
+    reg [1:0] x; 
+
+
+
     always @(posedge clk) begin
         // if reset, set counter to 0
         if (reset) begin
             second_counter <= 0;
             digit <= 0;
+            x <= 0;
         end else begin
             // if up to 16e6
             if (second_counter == MAX_COUNT) begin
@@ -27,6 +32,18 @@ module charmquark1984_controller #( parameter MAX_COUNT = 1000 ) (
 
                 // increment digit
                 digit <= digit + 1'b1;
+
+                case(x)
+                    2'b00: x <= 2'b01;
+                    2'b01: x <= 2'b11;
+                    2'b11: x <= 2'b10;
+                    2'b10: x <= 2'b00;
+                    default: ;
+                endcase
+
+
+
+
 
                 // only count from 0 to 9
                 if (digit == 9)
@@ -38,8 +55,8 @@ module charmquark1984_controller #( parameter MAX_COUNT = 1000 ) (
         end
     end
 
-
+    assign led_out[0:1] = x;
     // instantiate segment display
-    seg7 seg7(.counter(digit), .segments(led_out));
+    // seg7 seg7(.counter(digit), .segments(led_out));
 
 endmodule
