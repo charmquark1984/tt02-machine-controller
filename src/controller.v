@@ -7,14 +7,22 @@ module charmquark1984_controller #( parameter MAX_COUNT = 1000 ) (
     
     wire clk = io_in[0];
     wire reset = io_in[1];
-    wire [6:0] led_out;
-    assign io_out[6:0] = led_out;
+    wire [7:0] led_out;
+    assign io_out[7:0] = led_out;
 
     // external clock is 1000Hz, so need 10 bit counter
     reg [9:0] second_counter;
     reg [3:0] digit;
 
     reg [1:0] x; 
+    reg [1:0] y;
+    reg [1:0] z;
+    reg [1:0] e;
+
+    assign io_out[0:1] = x;
+    assign io_out[2:3] = y;
+    assign io_out[4:5] = z;
+    assign io_out[6:7] = e;
 
 
 
@@ -24,6 +32,9 @@ module charmquark1984_controller #( parameter MAX_COUNT = 1000 ) (
             second_counter <= 0;
             digit <= 0;
             x <= 0;
+            y <= 0;
+            z <= 0;
+            e <= 0;
         end else begin
             // if up to 16e6
             if (second_counter == MAX_COUNT) begin
@@ -55,8 +66,6 @@ module charmquark1984_controller #( parameter MAX_COUNT = 1000 ) (
         end
     end
 
-    assign led_out[0:1] = x;
-    assign led_out[2:6] = 0;
     // instantiate segment display
     // seg7 seg7(.counter(digit), .segments(led_out));
 
