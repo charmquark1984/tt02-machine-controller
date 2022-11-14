@@ -19,10 +19,10 @@ module charmquark1984_controller #( parameter MAX_COUNT = 1000 ) (
     reg [1:0] z;
     reg [1:0] e;
 
-    assign io_out[0:1] = x;
-    assign io_out[2:3] = y;
-    assign io_out[4:5] = z;
-    assign io_out[6:7] = e;
+    assign io_out[1:0] = x;
+    assign io_out[3:2] = y;
+    assign io_out[5:4] = z;
+    assign io_out[7:6] = e;
 
 
 
